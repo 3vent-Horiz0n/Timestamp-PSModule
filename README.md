@@ -1,2 +1,3 @@
-# Timestamp-PSModule
-A simple PowerShell module to generate timestamps with custom format for different use-cases.
+# Simple Timestamp PowerShell Module
+
+Simple module to learn PowerShell Modules
