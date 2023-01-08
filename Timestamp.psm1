@@ -19,7 +19,7 @@
 .OUTPUTS
     System.String
 .NOTES
-    github url
+    https://github.com/3vent-Horiz0n/Timestamp-PSModule
 #>
 
 function Get-Timestamp {
@@ -29,22 +29,31 @@ function Get-Timestamp {
             Mandatory = $false
         )]
         [ValidateSet(
-            'File', 'Date', 'Time'
+            'Date', 'DateTime', 'File', 'Time'
         )]
         [string]$Format
     )
 
     switch ($Format) {
         'Date' {
+            Write-Verbose "Parameter 'Date' given, returning timestamp with Date-String."
             $Timestamp = Get-Date -Format 'dd.MM.yyyy'
         }
-        'File' {
-            Write-Host 'File'
+        'DateTime' {
+            Write-Verbose "Parameter 'DateTime' given, returning timestamp with Date-String and Time-String."
+            $Timestamp = Get-Date -Format 'dd.MM.yyyy HH:mm:ss'
         }
-        'File' { Write-Host 'File' }
+        'File' {
+            Write-Verbose "Parameter 'File' given, returning timestamp with File-String."
+            $Timestamp = Get-Date -Format 'yyyy-MM-dd_HH-mm-ss-fff'
+        }
+        'Time' {
+            Write-Verbose "Parameter 'Time' given, returning timestamp with Time-String."
+            $Timestamp = Get-Date -Format 'HH:mm:ss'
+        }
         Default {
             Write-Verbose "No parameter given, returning default Timestamp."
-            Get-Date
+            $Timestamp = Get-Date
         }
     }
     return $Timestamp
